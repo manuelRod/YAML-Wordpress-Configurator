@@ -2,8 +2,8 @@
 ======================
 
 This plugin aims to easy the process of creating custom types of content.
-For the first version it will allow creation of custom post types via YML files.
-In the future will allow to create any custom type of content available for WP, custom taxonomies, etc.
+For the first version it will allow creation of custom post types via YAML files.
+In the future will allow to create any custom type of content available for WP, custom taxonomies, custom terms, etc.
 
 Did you find any bug?
 ---------------------
