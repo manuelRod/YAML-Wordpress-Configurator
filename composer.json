@@ -1,0 +1,20 @@
+{
+  "name": "manuelRod/yml-wp-configurator",
+  "description": "YML Wordpress configurator",
+  "keywords": ["wordpress", "plugin", "yml"],
+  "homepage": "https://www.cosmonauta.es",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Manuel Rodriguez",
+      "email": "manuel.rodriguez.rosado@gmail.com",
+      "homepage": "http://www.cosmonauta.es"
+    }
+  ],
+  "type": "wordpress-plugin",
+  "require": {
+    "php": ">=5.5.9",
+    "symfony/yaml": "v3.2.2",
+    "composer/installers": "v1.0.6"
+  }
+}
