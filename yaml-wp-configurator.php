@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name: YAML Wordpress Dynamic Content Type Configurator
- * Description: Easy the hassle of creating custom types of content via YML configuration files.
+ * Description: Easy the hassle of creating custom posts, taxonomies and terms via YAML configuration files.
  * Version: 0.0.1
  * Text Domain: yaml-wp-configurator
  * Domain Path: /languages
@@ -15,7 +15,8 @@ if ( ! defined( 'WPINC' ) ) {
     die;
 }
 
-spl_autoload_register( 'yaml_configurator_autoloader' ); // Register autoloader
+// Register autoloader
+spl_autoload_register( 'yaml_configurator_autoloader' );
 function yaml_configurator_autoloader( $class_name ) {
 
     if ( false !== strpos( $class_name, 'yamlConfigurator' ) ) {
