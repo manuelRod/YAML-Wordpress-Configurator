@@ -15,6 +15,9 @@ if ( ! defined( 'WPINC' ) ) {
     die;
 }
 
+define('CUSTOM_CONFIGURATION_PATH', dirname( __FILE__ ) . '/configuration_files/');
+
+
 // Register autoloader
 spl_autoload_register( 'yaml_configurator_autoloader' );
 function yaml_configurator_autoloader( $class_name ) {
@@ -30,7 +33,6 @@ function yaml_configurator_autoloader( $class_name ) {
 add_action( 'plugins_loaded', 'yaml_configurator_init' ); // Hook initialization function
 
 
-define('CUSTOM_POST_TYPE_PATH', dirname( __FILE__ ) . '/configuration_files/post_types/');
 
 
 
