@@ -1,40 +1,38 @@
 <?php
-
 namespace yamlConfigurator\Controllers;
 
 class readConfigFiles {
 
     /**
-     * @var string Will hold the path
+     * @var string
      */
     protected $path;
 
     /**
-     * @var string Will define the type of configuration (cpt, custom taxonomy or custom term)
+     * Get Configuration Path for config files
      */
-    protected $configurationType;
-
-    function __construct($configurationType) {
-        $this->configurationType = $configurationType;
-        $this->getConfigFolder();
+    public function getConfigFolder($configurationType) {
+        $this->path = CUSTOM_CONFIGURATION_PATH . $configurationType;
     }
 
     /**
-     * Get Configuration Path for config files
+     * Get all configuration files from a given folder
+     *
+     * @return array
      */
-    private function getConfigFolder() {
-        $this->path = CUSTOM_CONFIGURATION_PATH . '/' . $this->configurationType;
-    }
-
     public function getFiles() {
+        $files = array();
         if (is_dir($this->path)) {
             if ($dh = opendir($this->path)) {
-                while (($file = readdir($dh)) !== false){
-                    echo "filename:" . $file . "<br>";
+                while (($file = readdir($dh)) !== false) {
+                    if ($file != "." && $file != "..") {
+                        $files[] = $this->path . '/' . $file;
+                    }
                 }
                 closedir($dh);
             }
         }
+        return $files;
     }
 
 }
