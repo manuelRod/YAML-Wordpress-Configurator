@@ -28,15 +28,17 @@ abstract class yamlToAbstract {
      * Parses YAML file defined on path and returns its array interpretation
      * @return array
      */
-    protected function parseYaml() {
+    public function parseYaml() {
         $yaml = new Parser();
         return $yaml->parse( file_get_contents( $this->yamlPath ) );
     }
 
     /**
      * Registers the custom type of data defined on the YAML configuration file
+     *
+     * @param $configuration
      * @return mixed
      */
-    abstract public function register();
+    abstract public function registerCustomConfiguration($configuration);
 
 }
