@@ -7,7 +7,7 @@ In the future will allow to create any custom type of content available for WP, 
 ## How to use it?
 ======================
 Place your YML configuration file on configuration_files (example: post_types subfolder for custom post types)
-You can find yml examples on examples folder. You can use them as a guide to create your own custom data.
+You can find yml examples on configuration_examples folder. You can use them as a guide to create your own custom data.
 File has to be compatible with this plugin (See examples folder) and be placed (FTP / SSH) on it proper place.
 When ready, you need to be logged as Administrator and add ?yaml-register=true to the url. This way we avoid overload or unnecessary processing.
 When done, you will see an output log with information about the process.
