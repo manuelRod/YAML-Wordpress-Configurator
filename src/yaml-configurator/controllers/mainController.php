@@ -23,10 +23,10 @@ class mainController {
     }
 
     /**
-     *
+     * It goes through all config files, register them and print the result.
      */
     function registerConfigurationFiles() {
-
+        $registered_results = array();
         foreach ($this->getConfigFiles() as $config_type => $files) {
             foreach($files as $file) {
                 /**
@@ -36,13 +36,35 @@ class mainController {
                     $yamlToPost = new yamlToPost($file);
                     $configParsed = $yamlToPost->parseYaml();
                     $postTypeName = basename($file, '.yml');
-                    $yamlToPost->registerCustomConfiguration($postTypeName, $configParsed);
+                    if ($yamlToPost->registerCustomConfiguration($postTypeName, $configParsed)) {
+                        $registered_results[$config_type][$postTypeName] = true;
+                    } else {
+                        $registered_results[$config_type][$postTypeName] = false;
+                    }
                 }
             }
         }
+        flush_rewrite_rules();
+        $this->printFriendlyResult($registered_results);
     }
 
-
+    /**
+     * Prints a friendly log for the user when finished.
+     *
+     * @param $registered_results
+     */
+    private function printFriendlyResult($registered_results) {
+        $string = '<h1>Thanks for using YAML Wordpress Dynamic Content Type Configurator</h1>';
+        $string .= '<h2>Registration output logs</h2>';
+        foreach ($registered_results as $registered_type => $values) {
+            $string .= "<h2>$registered_type :</h2>";
+            foreach ($values as $name => $value) {
+                $success = ($value) ? 'registered' : 'error';
+                $string .= "<p>$name : $success</p>";
+            }
+        }
+        echo $string; die;
+    }
 
 
     /**

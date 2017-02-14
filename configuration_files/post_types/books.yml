@@ -21,8 +21,7 @@ show_in_menu: true
 query_var: true
 rewrite:
   slug: book
-capability_type:
-  - post
+capability_type: post
 has_archive: true
 hierarchical: false
 menu_position: null
