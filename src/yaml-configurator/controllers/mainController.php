@@ -1,8 +1,6 @@
 <?php
 
 namespace yamlConfigurator\Controllers;
-use yamlConfigurator\Controllers\readConfigFiles;
-use yamlConfigurator\Controllers\yamlToPost;
 
 class mainController {
 
@@ -26,6 +24,10 @@ class mainController {
      * It goes through all config files, register them and print the result.
      */
     function registerConfigurationFiles() {
+        if (!$this->checkScope()) {
+            return;
+        }
+
         $registered_results = array();
         foreach ($this->getConfigFiles() as $config_type => $files) {
             foreach($files as $file) {
@@ -66,6 +68,18 @@ class mainController {
         echo $string; die;
     }
 
+    /**
+     * Registration will be triggered by yaml-register parameter on the url and by admin user
+     * avoid external people using the system.
+     *
+     * @return bool
+     */
+    private function checkScope() {
+        if (isset($_GET['yaml-register']) && current_user_can('administrator')) {
+            return true;
+        }
+        return false;
+    }
 
     /**
      * Gets all configuration files hosted on configuration_files
