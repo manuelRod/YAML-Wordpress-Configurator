@@ -35,7 +35,8 @@ class mainController {
                 if ($config_type == 'post_types') {
                     $yamlToPost = new yamlToPost($file);
                     $configParsed = $yamlToPost->parseYaml();
-                    $yamlToPost->registerCustomConfiguration($configParsed);
+                    $postTypeName = basename($file, '.yml');
+                    $yamlToPost->registerCustomConfiguration($postTypeName, $configParsed);
                 }
             }
         }

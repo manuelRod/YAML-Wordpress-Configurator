@@ -1,11 +1,22 @@
 <?php
 
 namespace yamlConfigurator\Controllers;
-use yamlConfigurator\Controllers\yamlToAbstract;
 
+/**
+ * Class yamlToPost
+ * @package yamlConfigurator\Controllers
+ */
 class yamlToPost extends yamlToAbstract {
 
-    public function registerCustomConfiguration($configuration) {
-        var_dump($configuration);die;
+    /**
+     * Registers custom post type defined on the YAML configuration file.
+     *
+     * @param string $postTypeName
+     * @param array $configuration
+     * @return object|\WP_Error
+     */
+    public function registerCustomConfiguration($postTypeName, $configuration) {
+        return register_post_type( 'book', $configuration );
     }
 }
+

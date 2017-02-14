@@ -3,7 +3,10 @@
 namespace yamlConfigurator\Controllers;
 use Symfony\Component\Yaml\Parser;
 
-
+/**
+ * Class yamlToAbstract
+ * @package yamlConfigurator\Controllers
+ */
 abstract class yamlToAbstract {
 
     /**
@@ -36,9 +39,11 @@ abstract class yamlToAbstract {
     /**
      * Registers the custom type of data defined on the YAML configuration file
      *
-     * @param $configuration
-     * @return mixed
+     * @param string $postTypeName
+     * @param array $configuration
+     * @return object|\WP_Error
      */
-    abstract public function registerCustomConfiguration($configuration);
+    abstract public function registerCustomConfiguration($postTypeName, $configuration);
 
 }
+
