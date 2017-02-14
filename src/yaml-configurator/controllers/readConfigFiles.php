@@ -25,7 +25,7 @@ class readConfigFiles {
         if (is_dir($this->path)) {
             if ($dh = opendir($this->path)) {
                 while (($file = readdir($dh)) !== false) {
-                    if ($file != "." && $file != "..") {
+                    if ($file != "." && $file != ".." && $file != '.gitignore') {
                         $files[] = $this->path . '/' . $file;
                     }
                 }
