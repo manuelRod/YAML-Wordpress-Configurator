@@ -25,7 +25,7 @@ class mainController {
      */
     function registerConfigurationFiles() {
         if (!$this->checkScope()) {
-            return;
+            //return;
         }
 
         $registered_results = array();
@@ -47,7 +47,25 @@ class mainController {
             }
         }
         flush_rewrite_rules();
+        $this->saveRegisteredOptions($registered_results);
         $this->printFriendlyResult($registered_results);
+    }
+
+    /**
+     * Saves on Options the registered custom types
+     *
+     * @param $registered_results
+     */
+    protected function saveRegisteredOptions($registered_results) {
+        $options = array();
+        foreach ($registered_results as $registered_type => $values) {
+            foreach ($values as $name => $value) {
+                if ($value) {
+                    $options[$registered_type][] = $name;
+                }
+            }
+        }
+        update_option(YAML_OPTIONS, $options, false);
     }
 
     /**
@@ -55,7 +73,7 @@ class mainController {
      *
      * @param $registered_results
      */
-    private function printFriendlyResult($registered_results) {
+    protected function printFriendlyResult($registered_results) {
         $string = '<h1>Thanks for using YAML Wordpress Dynamic Content Type Configurator</h1>';
         $string .= '<h2>Registration output logs</h2>';
         foreach ($registered_results as $registered_type => $values) {

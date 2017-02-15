@@ -16,6 +16,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 define('CUSTOM_CONFIGURATION_PATH', dirname( __FILE__ ) . '/configuration_files/');
+define('YAML_OPTIONS', 'yaml_configurator_register');
 
 // Register autoloader
 spl_autoload_register( 'yaml_configurator_autoloader' );
