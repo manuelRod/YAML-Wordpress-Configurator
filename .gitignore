@@ -1,2 +1,3 @@
 # Hidding configuration files on the repo
 /configuration_files/post_types/*
+/configuration_files/taxonomies/*

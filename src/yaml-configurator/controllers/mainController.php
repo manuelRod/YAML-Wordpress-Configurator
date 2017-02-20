@@ -1,16 +1,20 @@
 <?php
 
 namespace yamlConfigurator\Controllers;
+use yamlConfigurator\Controllers\yamlToService;
 
 class mainController {
 
     /**
      * It will hold all supported configuration types
+     * post_types
+     * taxonomies
      *
-     * array
+     * Array
      */
     const CONFIGURATIONTYPES = array (
-        'post_types'
+        'post_types',
+        'taxonomies'
     );
 
     /**
@@ -25,41 +29,32 @@ class mainController {
      */
     function registerConfigurationFiles() {
         if (!$this->checkScope()) {
-            return;
+            //return;
         }
 
         $registered_results = array();
         foreach ($this->getConfigFiles() as $config_type => $files) {
             foreach($files as $file) {
-                /**
-                 * Check which type of config type
-                 */
-                if ($config_type == 'post_types') {
-                    $yamlToPost = new yamlToPost($file);
-                    $configParsed = $yamlToPost->parseYaml();
-                    $postTypeName = basename($file, '.yml');
-                    if ($yamlToPost->registerCustomConfiguration($postTypeName, $configParsed)) {
-                        $registered_results[$config_type][$postTypeName] = true;
-                    } else {
-                        $registered_results[$config_type][$postTypeName] = false;
-                    }
-                }
+                $yamlTo = yamlToService::yamlTo($config_type, $file);
+                $configParsed = $yamlTo->parseYaml();
+                $typeName = basename($file, '.yml');
+                $registered_results[$config_type][$typeName] = $yamlTo->registerCustomConfiguration($typeName, $configParsed);
             }
         }
         $this->afterRegisterProcess($registered_results);
     }
 
+    /**
+     * Unregister deleted configurations
+     * 
+     * @param $deleted_configurations
+     */
     function unregisterConfigurationFiles($deleted_configurations)
     {
         foreach ($deleted_configurations as $config_type => $files) {
             foreach ($files as $file_name => $value) {
-                /**
-                 * Check which type of config type
-                 */
-                if ($config_type == 'post_types') {
-                    new unregisterCustomPostType();
-                    (new unregisterCustomPostType())->unregister($file_name);
-                }
+                $unregister_service = unregisterService::unregister($config_type);
+                $unregister_service->unregister($file_name);
             }
         }
     }

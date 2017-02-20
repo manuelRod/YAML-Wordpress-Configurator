@@ -1,0 +1,25 @@
+labels:
+  name: Genres
+  singular_name: Genre
+  search_items: Search Genres
+  popular_items: Popular Genres
+  all_items: All Genres
+  parent_item: Parent Genre
+  parent_item_colon: Parent Genre:
+  edit_item: Edit Genre
+  update_item: Update Genre
+  add_new_item: Add new Genre
+  new_item_name: New Genre Name
+  separate_items_with_commas: Separate genres with commas
+  add_or_remove_items: Add or remove genres
+  choose_from_most_used: Choose from the most used genres
+  not_found: No genres found.
+  menu_name: Genre
+
+hierarchical: true
+show_ui: true
+show_admin_column: true
+update_count_callback: _update_post_term_count
+query_var: true
+rewrite:
+  slug: 'genre'
