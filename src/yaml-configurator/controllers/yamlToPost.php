@@ -16,7 +16,7 @@ class yamlToPost extends yamlToAbstract {
      * @return object|\WP_Error
      */
     public function registerCustomConfiguration($postTypeName, $configuration) {
-        return register_post_type( 'book', $configuration );
+        return register_post_type( $postTypeName, $configuration );
     }
 }
 
